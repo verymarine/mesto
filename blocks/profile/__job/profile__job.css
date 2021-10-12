@@ -1,7 +1,4 @@
 .profile__job {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
   margin: 16px 0 25px 0;
   padding: 0;
   font-family: 'Inter', 'Arial', sans-serif;
