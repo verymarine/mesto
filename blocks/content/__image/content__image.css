@@ -1,0 +1,7 @@
+.content__image {
+  margin: 0;
+  padding: 0;
+  object-fit: cover;
+  max-width: 282px;
+  max-height: 282px;
+}

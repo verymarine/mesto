@@ -1,0 +1,32 @@
+.profile__job {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 16px 0 25px 0;
+  padding: 0;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile__job {
+    max-width: 768px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__job {
+    /* max-width: 320px; */
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin: 14px auto 0 auto;
+  }
+}
