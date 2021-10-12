@@ -1,4 +1,4 @@
-.content__button {
+.profile__add-button {
   margin: auto 0 auto 0;
   padding: 0;
   background-image: url('../../../images/plus.svg');
@@ -14,19 +14,19 @@
   grid-area: button;
 }
 
-.content__button:hover {
+.profile__add-button:hover {
   opacity: .6;
 }
 
 @media screen and (max-width: 1023px) {
-  .content__button {
+  .profile__add-button {
     max-width: 768px;
     margin-right: 10px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .content__button {
+  .profile__add-button {
     max-width: 320px;
     background-size: 16px 16px;
     width: 282px;
