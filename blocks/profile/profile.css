@@ -17,6 +17,7 @@
 @media screen and (max-width: 767px) {
   .profile {
     max-width: 320px;
+    /* height: 230px; */
     margin-top: 42px;
     flex-direction: column;
     flex-wrap: wrap;
