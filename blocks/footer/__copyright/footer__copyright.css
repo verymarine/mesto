@@ -2,7 +2,6 @@
   padding: 0;
   margin: 0;
   color: #545454;
-  font-family: Inter;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -12,5 +11,12 @@
 @media screen and (max-width: 1023px) {
   .footer__copyright {
     margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 17px;
   }
 }

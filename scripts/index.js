@@ -3,6 +3,12 @@ const popup = document.querySelector('.popup');
 const editButton = document.querySelector('.profile__button');
 const popupCloseButton = document.querySelector('.popup__close'); 
 
+// создаю переменную для инпута (который меняет имя)
+const nameField = document.querySelector('.popup__input_type_name')
+const jobField = document.querySelector('.popup__input_type_job')
+const profileName =document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
+const popupForm = document.querySelector('.popup__form');
 
 // добавила ф-ю которая закрывает поп-ап
 function closePopup() {
@@ -13,8 +19,19 @@ function closePopup() {
 
 function openPopup() {
   popup.classList.add('popup_opened')
-  jobField.value = ProfileJob.textContent;
-  nameField.value = ProfileName.textContent;
+  jobField.value = profileJob.textContent;
+  nameField.value = profileName.textContent;
+}
+
+// изменения текста при помощи ф-ии 
+
+function submitForm(event) {
+  event.preventDefault()
+
+  profileName.textContent = nameField.value;
+  profileJob.textContent = jobField.value;
+
+  closePopup();
 }
 
 // слушатель по клику которого открывает поп-ап
@@ -23,41 +40,19 @@ editButton.addEventListener('click', openPopup)
 // слушатель по клику к-го закрывается поп-ап (нажатие на крестик)
 popupCloseButton.addEventListener('click', closePopup)
 
-// назначили переменную кнопке Сохранить
-const formSaveButton = document.querySelector('.popup__button')
-
-
-// изменения текста при помощи ф-ии 
-
-function submitForm(event) {
-
-  ProfileName.textContent = nameField.value;
-  ProfileJob.textContent = jobField.value;
-
-  event.preventDefault()
-  closePopup();
-}
-
-// добавили слушателя клику сохранить задача закрыть поп-ап
-formSaveButton.addEventListener('click', submitForm)
-
-// создаю переменную для инпута (который меняет имя)
-const nameField = document.querySelector('.popup__input_name')
-const jobField = document.querySelector('.popup__input_job')
-
-const ProfileName =document.querySelector('.profile__name');
-const ProfileJob = document.querySelector('.profile__job');
+// добавили слушателя клику сохранить/enter задача закрыть поп-ап и поменять значения
+popupForm.addEventListener('submit', submitForm)
 
 
 
 
-function popupClickHandler(event) {
+// function popupClickHandler(event) {
 
-  if (event.target.classList.contains('popup')) {
+//   if (event.target.classList.contains('popup')) {
   
-  closePopup()
-}
-} 
+//   closePopup()
+// }
+// } 
 
 // слушатель по клику к-го закрывается поп-ап (нажатие на любое место)
-popup.addEventListener('mouseup', popupClickHandler)
+// popup.addEventListener('mouseup', popupClickHandler)
