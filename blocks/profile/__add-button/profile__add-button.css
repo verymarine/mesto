@@ -12,6 +12,7 @@
   border: 2px #ffffff solid;
   cursor: pointer;
   grid-area: button;
+  border-radius: 2px;
 }
 
 .profile__add-button:hover {
