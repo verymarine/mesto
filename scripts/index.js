@@ -10,7 +10,7 @@ const profileJob = document.querySelector('.profile__job');
 const popupForm = document.querySelector('.popup__form_type_edit');
 
 //  присвоила переменную для поп-апа Редактировать профиль
-const popupEditProfile = document.querySelector('.popup__edit');
+const popupEditProfile = document.querySelector('.popup_edit');
 
 //переменная для использование карточек мест!!!!!!!!!!!
 const contentPhoto = document.querySelector('.content');
@@ -26,7 +26,7 @@ const placeField = document.querySelector('.popup__input_type_place');
 const linkField = document.querySelector('.popup__input_type_link'); 
 
 //присвоила переменную для поп-апа Новое место
-const popupAddPlace = document.querySelector('.popup__add');
+const popupAddPlace = document.querySelector('.popup_add');
 
 // переменные для кнопки добавить новое место
 const buttonAddPlace = document.querySelector('.profile__add-button');
@@ -34,7 +34,7 @@ const buttonAddPlace = document.querySelector('.profile__add-button');
 const buttonCloseAddPlace = document.querySelector('.popup__close_type_add-place');
 
 
-const popupBigImage = document.querySelector('.popup__picture');
+const popupBigImage = document.querySelector('.popup_picture');
 const popupImage = document.querySelector('.popup__image');
 const popupCapture = document.querySelector('.popup__capture');
 const buttonCloseImage = document.querySelector('.popup__close_type_big-image');
