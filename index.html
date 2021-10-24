@@ -26,11 +26,12 @@
         <button class="profile__add-button" type="button"></button>
       </section>
       <section class="content">
-        <article class="content__grid">
+        <!-- <article class="content__grid">
           <img class="content__image" src="./images/dom.png" alt="Карачаевск">
           <div class="content__info">
             <h2 class="content__title">Карачаевск</h2>
             <button class="content__like" type="button"></button>
+            <button class="content__trashcan" type="button"></button>
           </div>
         </article>
         <article class="content__grid">
@@ -67,23 +68,56 @@
             <h2 class="content__title">Карачаево-Черкесия</h2>
             <button class="content__like" type="button"></button>
           </div>
-        </article>
+        </article> -->
       </section>
     </main>
     <footer class="footer">
       <h2 class="footer__copyright">© 2020 Mesto Russia</h2>
     </footer>
-    <div class="popup">
+    <div class="popup popup__edit-profile">
       <div class="popup__container">
-      <button class="popup__close" type="button"></button>
+      <button class="popup__close popup__close_type_edit" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="profile-data" novalidate>
+      <form class="popup__form popup__form_type_edit" name="profile-data" novalidate>
         <input class="popup__input popup__input_type_name" placeholder="Имя" type="text" name="name">
         <input class="popup__input popup__input_type_job" placeholder="О себе" type="text" name="job">
         <button class="popup__button" type="submit">Сохранить</button>
       </form>
       </div>
     </div>
+    <div class="popup popup__add-place">
+      <div class="popup__container">
+      <button class="popup__close popup__close_type_add-place" type="button"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form popup__form_type_add-place" name="profile-data" novalidate>
+        <input class="popup__input popup__input_type_place" placeholder="Название" type="text" name="place">
+        <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" type="url" name="link">
+        <button class="popup__button" type="submit">Создать</button>
+      </form>
+      </div>
+    </div>
+    <div class="popup popup__big-image">
+      <div class="popup__container-image">
+        <button class="popup__close popup__close_type_big-image" type="button"></button>
+        <img class="popup__image" src="" alt="">
+        <h2 class="popup__capture"></h2>
+      </div>
+    </div>
+
+    <template class="template">
+      <article class="content__grid">
+        <img class="content__image" src="./images/dom.png" alt="пейзажная картинка">
+        <div class="content__info">
+          <h2 class="content__title">Карачаевск</h2>
+          <button class="content__like" type="button"></button>
+          <button class="content__trashcan" type="button"></button>
+        </div>
+      </article>
+      <!-- <div class="popup popup__big-image popup_opened">
+        <img class="popup__image" src="" alt="">
+        <h2 class="popop__capture"></h2>
+      </div> -->
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
