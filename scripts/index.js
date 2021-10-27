@@ -29,7 +29,9 @@ const popupAddPlace = document.querySelector(".popup_add");
 const buttonAddPlace = profile.querySelector(".profile__add-button");
 
 // переменная для кнопки-крестика поп-ап Новое место
-const buttonCloseAddPlace = document.querySelector(".popup__close_type_add-place");
+const buttonCloseAddPlace = document.querySelector(
+  ".popup__close_type_add-place"
+);
 
 //переменная для использование карточек мест
 const contentPhoto = document.querySelector(".content");
@@ -145,8 +147,8 @@ function addPlaceSubmit(event) {
   const name = placeField.value;
   const link = linkField.value;
   const card = {
-    name: name,
-    link: link,
+    name,
+    link,
   };
 
   prependContentBlock(card);
@@ -171,7 +173,4 @@ buttonAddPlace.addEventListener("click", openPopupAddPlace);
 buttonCloseAddPlace.addEventListener("click", closePopupAddPlace);
 
 // слушатель для кнопки-крестика большой картинки
-buttonCloseImage.addEventListener("click", closeBigImage);
-
-// слушатель для закрытия большой картинки
 buttonCloseImage.addEventListener("click", closeBigImage);
