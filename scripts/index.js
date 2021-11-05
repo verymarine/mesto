@@ -49,6 +49,7 @@ const buttonCloseImage = document.querySelector(".popup__close_type_big-image");
 
 //ф-я которая открывает поп-ап
 function openPopup(popup) {
+  // setSubmitButtonState(form, mass);
   popup.classList.add("popup_opened");
 }
 
@@ -70,8 +71,8 @@ function valueEditInput() {
 }
 
 // изменения текста при помощи ф-ии
-function handleEditFormSubmit(event) {
-  event.preventDefault();
+function handleEditFormSubmit(evt) {
+  evt.preventDefault();
   profileName.textContent = nameField.value;
   profileJob.textContent = jobField.value;
 
@@ -100,10 +101,10 @@ function handleLikeActive(evt) {
 }
 
 // ф-я открытия большой картинки
-function openBigImage(event) {
+function openBigImage(evt) {
   openPopup(popupBigImage);
 
-  const card = event.target.closest(".content__grid");
+  const card = evt.target.closest(".content__grid");
   popupImage.src = card.querySelector(".content__image").src;
   popupCapture.innerText = card.querySelector(".content__title").innerText;
   popupImage.alt = card.querySelector(".content__title").innerText;
@@ -142,8 +143,8 @@ function prependContentBlock(item) {
 }
 
 //ф-я отправления внесенных значений с дальнейшим закрытием и сбросом инфо в поп-ап
-function addPlaceSubmit(event) {
-  event.preventDefault();
+function addPlaceSubmit(evt) {
+  evt.preventDefault();
   const name = placeField.value;
   const link = linkField.value;
   const card = {
@@ -153,7 +154,7 @@ function addPlaceSubmit(event) {
 
   prependContentBlock(card);
   closePopup(popupAddPlace);
-  event.target.reset();
+  evt.target.reset();
 }
 
 items.forEach(prependContentBlock);
@@ -174,3 +175,33 @@ buttonCloseAddPlace.addEventListener("click", closePopupAddPlace);
 
 // слушатель для кнопки-крестика большой картинки
 buttonCloseImage.addEventListener("click", closeBigImage);
+
+// ф-я закрытия попапа нажатием в пустоту
+function popupClickHandler(evt) {
+  const popup = document.querySelector(".popup_opened");
+  if (evt.target.classList.contains("popup_opened")) {
+    closePopup(popup);
+  }
+}
+
+// слушатель по клику к-го закрывается поп-ап (нажатие на любое место)
+document.addEventListener("mouseup", popupClickHandler);
+
+const mass = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  inputErrorClass: "popup__input_check_invalid", //класс который отображает невалидность вставленной информации в инпут
+  submitButtonSelector: ".popup__button",
+  submitButtonErrorClass: "popup__button_type_unactive",
+};
+
+// слушатель с ф-ей обработки по клавише ESC
+document.addEventListener("keydown", function closePopupEscape(evt) {
+  const popup = document.querySelector(".popup_opened");
+  if (evt.key === "Escape") {
+    closePopup(popup);
+  }
+});
+
+// вызов функции валидности
+enableValidation(mass);
