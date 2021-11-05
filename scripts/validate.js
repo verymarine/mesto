@@ -7,26 +7,26 @@ function enableValidation(inputValidation) {
 }
 
 //
-function setFormListeners(form, mass) {
-  form.addEventListener("submit", (evt) => handlerSubmit(evt)); // !!!!!!!!!!!!!
-  form.addEventListener("input", () => setSubmitButtonState(form, mass));
+function setFormListeners(form, config) {
+  form.addEventListener("submit", (evt) => handlerSubmit); // !!!!!!!!!!!!!
+  form.addEventListener("input", () => setSubmitButtonState(form, config));
 
-  const inputs = [...form.querySelectorAll(mass.inputSelector)];
+  const inputs = [...form.querySelectorAll(config.inputSelector)];
 
   inputs.forEach((inputElement) => {
     inputElement.addEventListener("input", () =>
-      handlerFieldValidation(inputElement, form, mass)
+      handlerFieldValidation(inputElement, form, config)
     );
   });
 
-  setSubmitButtonState(form, mass);
+  setSubmitButtonState(form, config);
 }
 //ф-я проверки кнопки
-function setSubmitButtonState(form, mass) {
-  const button = form.querySelector(mass.submitButtonSelector);
+function setSubmitButtonState(form, config) {
+  const button = form.querySelector(config.submitButtonSelector);
 
   button.disabled = !form.checkValidity();
-  button.classList.toggle(mass.submitButtonErrorClass, !form.checkValidity());
+  button.classList.toggle(config.submitButtonErrorClass, !form.checkValidity());
 }
 
 //можно передать в сабмит без указания ивента
@@ -35,31 +35,31 @@ function handlerSubmit(evt) {
 }
 
 // ф-я проверки валидности и назначения соответствующих значений (шов/хайд)
-function handlerFieldValidation(input, form, mass) {
+function handlerFieldValidation(input, form, config) {
   console.log(input.validity);
   // если НЕ валидная ! покажет ошибку
   if (!input.validity.valid) {
     // показывать ошибку
-    showError(input, form, mass);
+    showError(input, form, config);
   } else {
     // скрывать
-    hideError(input, form, mass);
+    hideError(input, form, config);
   }
 }
 
 //ф-я которая показывает ошибку ввода призаполнении инпутов
-function showError(input, form, mass) {
+function showError(input, form, config) {
   const errorElement = form.querySelector(`#${input.id}-error`);
 
-  input.classList.add(mass.inputErrorClass);
+  input.classList.add(config.inputErrorClass);
 
   errorElement.textContent = input.validationMessage;
 }
 
 //ф-я которая скрывает ошибку ввода призаполнении инпутов
-function hideError(input, form, mass) {
+function hideError(input, form, config) {
   const errorElement = form.querySelector(`#${input.id}-error`);
-  input.classList.remove(mass.inputErrorClass);
+  input.classList.remove(config.inputErrorClass);
 
   errorElement.textContent = "";
 }

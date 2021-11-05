@@ -49,13 +49,19 @@ const buttonCloseImage = document.querySelector(".popup__close_type_big-image");
 
 //ф-я которая открывает поп-ап
 function openPopup(popup) {
-  // setSubmitButtonState(form, mass);
   popup.classList.add("popup_opened");
+  //слушатель нажатия кнопки
+  document.addEventListener("keydown", closeByEscape);
+  // слушатель по клику к-го закрывается поп-ап (нажатие на любое место)
+  document.addEventListener("mouseup", popupClickHandler);
 }
 
 // добавила ф-ю которая закрывает поп-ап
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  //слушатель нажатия кнопки
+  document.removeEventListener("keydown", closeByEscape);
+  document.removeEventListener("mouseup", popupClickHandler);
 }
 
 // ф-я закрытия поп-ап Редактирования профиля
@@ -82,8 +88,8 @@ function handleEditFormSubmit(evt) {
 // ф-я открытия  поп-ап Новое место
 function openPopupAddPlace(evt) {
   openPopup(popupAddPlace);
-  placeField.value = '';
-  linkField.value = '';
+  placeField.value = "";
+  linkField.value = "";
 }
 
 function closePopupAddPlace(evt) {
@@ -153,10 +159,12 @@ function addPlaceSubmit(evt) {
     name,
     link,
   };
-
-  prependContentBlock(card);
-  closePopup(popupAddPlace);
-  evt.target.reset();
+  if (name === "" && link === "") {
+  } else {
+    prependContentBlock(card);
+    closePopup(popupAddPlace);
+    evt.target.reset();
+  }
 }
 
 items.forEach(prependContentBlock);
@@ -165,7 +173,7 @@ items.forEach(prependContentBlock);
 editButton.addEventListener("click", valueEditInput);
 
 // слушатель по клику к-го закрывается поп-ап (нажатие на крестик)
-popupCloseButton.addEventListener("click", closeEditProfile);
+// popupCloseButton.addEventListener("click", closeEditProfile);
 
 // добавили слушателя клику сохранить/enter задача закрыть поп-ап и поменять значения
 popupForm.addEventListener("submit", handleEditFormSubmit);
@@ -173,23 +181,24 @@ popupForm.addEventListener("submit", handleEditFormSubmit);
 // слушатели  для добавления и удаления места
 formAddPlace.addEventListener("submit", addPlaceSubmit);
 buttonAddPlace.addEventListener("click", openPopupAddPlace);
-buttonCloseAddPlace.addEventListener("click", closePopupAddPlace);
+
+//слушатель закрытия попапа добавления места нажатием на крестик
+// buttonCloseAddPlace.addEventListener("click", closePopupAddPlace);
 
 // слушатель для кнопки-крестика большой картинки
-buttonCloseImage.addEventListener("click", closeBigImage);
+// buttonCloseImage.addEventListener("click", closeBigImage);
 
 // ф-я закрытия попапа нажатием в пустоту
 function popupClickHandler(evt) {
-  const popup = document.querySelector(".popup_opened");
   if (evt.target.classList.contains("popup_opened")) {
-    closePopup(popup);
+    closePopup(evt.target);
   }
 }
 
 // слушатель по клику к-го закрывается поп-ап (нажатие на любое место)
-document.addEventListener("mouseup", popupClickHandler);
+// document.addEventListener("mouseup", popupClickHandler);
 
-const mass = {
+const config = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   inputErrorClass: "popup__input_check_invalid", //класс который отображает невалидность вставленной информации в инпут
@@ -197,13 +206,26 @@ const mass = {
   submitButtonErrorClass: "popup__button_type_unactive",
 };
 
-// слушатель с ф-ей обработки по клавише ESC
-document.addEventListener("keydown", function closePopupEscape(evt) {
-  const popup = document.querySelector(".popup_opened");
+//ф-я закрытия попап нажатием кнопки эскейп
+function closeByEscape(evt) {
   if (evt.key === "Escape") {
-    closePopup(popup);
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
   }
+}
+
+const popups = document.querySelectorAll(".popup");
+
+popups.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains("popup__close")) {
+      closePopup(popup);
+    }
+  });
 });
 
 // вызов функции валидности
-enableValidation(mass);
+enableValidation(config);
