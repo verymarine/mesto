@@ -3,7 +3,7 @@ function enableValidation(inputValidation) {
 
   forms.forEach((form) => setFormListeners(form, inputValidation));
 
-  console.log(forms);
+  // console.log(forms);
 }
 
 //

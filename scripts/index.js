@@ -80,11 +80,13 @@ function handleEditFormSubmit(evt) {
 }
 
 // ф-я открытия  поп-ап Новое место
-function openPopupAddPlace() {
+function openPopupAddPlace(evt) {
   openPopup(popupAddPlace);
+  placeField.value = '';
+  linkField.value = '';
 }
 
-function closePopupAddPlace() {
+function closePopupAddPlace(evt) {
   closePopup(popupAddPlace);
 }
 
