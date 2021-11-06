@@ -21,7 +21,7 @@ const formAddPlace = document.querySelector(".popup__form_type_add-place");
 //переменные для значений Места и ссылки картинки
 const placeField = document.querySelector(".popup__input_type_place");
 const linkField = document.querySelector(".popup__input_type_link");
-const placeAddButton = formAddPlace.querySelector('.popup__button');
+const placeAddButton = formAddPlace.querySelector(".popup__button");
 
 //присвоила переменную для поп-апа Новое место
 const popupAddPlace = document.querySelector(".popup_add");
@@ -53,7 +53,7 @@ function openPopup(popup) {
   popup.classList.add("popup_opened");
   //слушатель нажатия кнопки
   document.addEventListener("keydown", closeByEscape);
-   //!!!!!!!!!!!!!!!! не работает вызов функции
+  //!!!!!!!!!!!!!!!! не работает вызов функции
 
   // слушатель по клику к-го закрывается поп-ап (нажатие на любое место)
   // document.addEventListener("mouseup", popupClickHandler);
@@ -65,7 +65,6 @@ function closePopup(popup) {
   //слушатель нажатия кнопки
   document.removeEventListener("keydown", closeByEscape);
   // document.removeEventListener("mouseup", popupClickHandler);
-  
 }
 
 // ф-я закрытия поп-ап Редактирования профиля
@@ -95,10 +94,8 @@ function openPopupAddPlace(evt) {
   placeField.value = "";
   linkField.value = "";
 
-  
-
   placeAddButton.disabled = true;
-  placeAddButton.classList.add('popup__button_type_unactive');
+  placeAddButton.classList.add("popup__button_type_unactive");
 }
 
 function closePopupAddPlace(evt) {
@@ -172,7 +169,7 @@ function addPlaceSubmit(evt) {
     prependContentBlock(card);
     closePopup(popupAddPlace);
     evt.target.reset();
-  } 
+  }
 }
 
 items.forEach(prependContentBlock);
