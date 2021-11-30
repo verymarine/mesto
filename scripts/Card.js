@@ -44,7 +44,7 @@ export class Card {
       .addEventListener("click", this._openBigImage);
   }
 
-  // переключатель лайка 
+  // переключатель лайка
   _handleLikeActive() {
     this._element
       .querySelector(".content__like")

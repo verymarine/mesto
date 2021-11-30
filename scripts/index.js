@@ -60,7 +60,7 @@ const formAddPlace = document.querySelector(".popup__form_type_add-place");
 //переменные для значений Места и ссылки картинки
 const placeField = document.querySelector(".popup__input_type_place");
 const linkField = document.querySelector(".popup__input_type_link");
-const placeAddButton = formAddPlace.querySelector(".popup__button");
+// const placeAddButton = formAddPlace.querySelector(".popup__button");
 
 //присвоила переменную для поп-апа Новое место
 const popupAddPlace = document.querySelector(".popup_add");
@@ -95,16 +95,13 @@ function closePopup(popup) {
   document.removeEventListener("keydown", closeByEscape);
 }
 
-// ф-я закрытия поп-ап Редактирования профиля
-function closeEditProfile() {
-  closePopup(popupEditProfile);
-}
-
 // ф-я при открытии поп-ап в формах указаны значения из профиля
-function valueEditInput() {
+function editInputValue() {
   openPopup(popupEditProfile);
   jobField.value = profileJob.textContent;
   nameField.value = profileName.textContent;
+
+  profileFormValidator.resetValidation();
 }
 
 // изменения текста внутри попап редактировани при помощи ф-ии
@@ -118,17 +115,12 @@ function handleEditFormSubmit(evt) {
 
 // ф-я открытия  поп-ап Новое место
 function openPopupAddPlace(evt) {
+  debugger;
   openPopup(popupAddPlace);
   placeField.value = "";
   linkField.value = "";
 
-  placeAddButton.disabled = true;
-  placeAddButton.classList.add("popup__button_type_unactive");
-}
-
-// ф-я закрытия  поп-ап Новое место
-function closePopupAddPlace(evt) {
-  closePopup(popupAddPlace);
+  addPlaceFormValidator.resetValidation();
 }
 
 // ф-я открытия большой картинки
@@ -139,11 +131,6 @@ function openBigImage(evt) {
   popupImage.src = card.querySelector(".content__image").src;
   popupCapture.innerText = card.querySelector(".content__title").innerText;
   popupImage.alt = card.querySelector(".content__title").innerText;
-}
-
-// ф-я закрытия большой картинки
-function closeBigImage() {
-  closePopup(popupBigImage);
 }
 
 //ф-я закрытия попап нажатием кнопки эскейп
@@ -166,18 +153,25 @@ popups.forEach((popup) => {
   });
 });
 
-// ф-я добавления блоков в начало с использованием импортируемого класса
-function prependContentBlock(item) {
+// ф-я использования импортируемого класса Карточек
+function createCard(item) {
   const card = new Card(item, ".template", openBigImage);
-  const cardElement = card.generateCard();
-  cardsContainer.prepend(cardElement);
+  return card.generateCard();
+}
+
+// отдельная ф-я добавления карточек в начало
+function prependContentBlock(item) {
+  cardsContainer.prepend(item);
 }
 
 // добавление карточки вперед вызов
-items.forEach(prependContentBlock);
+items.forEach(function (item) {
+  prependContentBlock(createCard(item));
+}); // вызвать функцию с эддкард и препендконтентблок
 
 //ф-я отправления внесенных значений с дальнейшим закрытием и сбросом инфо в поп-ап
 function addPlaceSubmit(evt) {
+  debugger;
   evt.preventDefault();
   const name = placeField.value;
   const link = linkField.value;
@@ -186,7 +180,7 @@ function addPlaceSubmit(evt) {
     link,
   };
   if (name != "" && link != "") {
-    prependContentBlock(card);
+    prependContentBlock(createCard(card));
     closePopup(popupAddPlace);
     evt.target.reset();
   }
@@ -196,13 +190,11 @@ function addPlaceSubmit(evt) {
 const profileFormValidator = new FormValidator(config, formProfile);
 profileFormValidator.enableValidation();
 
-// вызов функции валидности для добавления места из класса Валидации
-const addPlaceForm = document.querySelector(".popup_add .popup__form");
-const addPlaceFormValidator = new FormValidator(config, addPlaceForm);
+const addPlaceFormValidator = new FormValidator(config, formAddPlace);
 addPlaceFormValidator.enableValidation();
 
 // слушатель по клику которого открывает поп-ап
-editButton.addEventListener("click", valueEditInput);
+editButton.addEventListener("click", editInputValue);
 
 // добавили слушателя клику сохранить/enter задача закрыть поп-ап и поменять значения
 formProfile.addEventListener("submit", handleEditFormSubmit);
