@@ -1,9 +1,9 @@
-export class Card {
-  constructor(data, templateSelector, openBigImage) {
+class Card {
+  constructor(data, templateSelector, handleCardClick) {
     this._image = data.link;
     this._title = data.name;
     this._cardSelector = templateSelector;
-    this._openBigImage = openBigImage;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -18,7 +18,7 @@ export class Card {
   }
 
   // создаю карточки в которые будут передаваться данные о картинке и имени
-  generateCard() {
+  render() {
     this._element = this._getTemplate();
 
     this._element.querySelector(".content__image").src = this._image;
@@ -41,7 +41,9 @@ export class Card {
 
     this._element
       .querySelector(".content__image")
-      .addEventListener("click", this._openBigImage);
+      .addEventListener("click", () => {
+        this._handleCardClick(this._title, this._image);
+      });
   }
 
   // переключатель лайка
@@ -57,3 +59,5 @@ export class Card {
     this._element.closest(".content__grid").remove();
   }
 }
+
+export default Card;
