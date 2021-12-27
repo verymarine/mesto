@@ -4,7 +4,7 @@ export class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._popupImage = this._popup.querySelector(".popup__image");
-    this._popupCapture = document.querySelector(".popup__capture");
+    this._popupCapture = this._popup.querySelector(".popup__capture");
   }
 
   open(text, src) {
