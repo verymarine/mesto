@@ -7,63 +7,34 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
-const config = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  inputErrorClass: "popup__input_check_invalid", //класс который отображает невалидность вставленной информации в инпут
-  submitButtonSelector: ".popup__button",
-  submitButtonErrorClass: "popup__button_type_unactive",
-};
+import {
+  config,
+  items,
+  editButton,
+  formProfile,
+  formAddPlace,
+  nameField,
+  jobField,
+  linkField,
+  placeField,
+  buttonAddPlace,
+} from "../utils/constants.js";
 
-// массив с объектами Карточек
-const items = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+const popupImage = new PopupWithImage(".popup_picture");
+popupImage.setEventListeners();
 
-// определяю переменные для всплывающего окна редактирования профиля
-const profile = document.querySelector(".profile");
-const editButton = profile.querySelector(".profile__button");
+// ф-я открытия большой картинки
+function handleCardClick(name, link) {
+  popupImage.open(name, link);
+}
 
-// создаю переменную для инпута (который меняет имя)
-const nameField = document.querySelector(".popup__input_type_name");
-const jobField = document.querySelector(".popup__input_type_job");
-const profileName = profile.querySelector(".profile__name");
-const profileJob = profile.querySelector(".profile__job");
-const formProfile = document.querySelector(".popup__form_type_edit");
+const editUser = new UserInfo(".profile__name", ".profile__job");
 
-// переменная для формы добавления Нового места
-const formAddPlace = document.querySelector(".popup__form_type_add-place");
+const popupEdit = new PopupWithForm(".popup_edit", handleProfileSubmit);
+popupEdit.setEventListeners();
 
-//переменные для значений Места и ссылки картинки
-const placeField = document.querySelector(".popup__input_type_place");
-const linkField = document.querySelector(".popup__input_type_link");
-// const placeAddButton = formAddPlace.querySelector(".popup__button");
-
-// переменные для кнопки добавить новое место
-const buttonAddPlace = profile.querySelector(".profile__add-button");
+const popupAddPlace = new PopupWithForm(".popup_add", handleAddCardSubmit);
+popupAddPlace.setEventListeners();
 
 // ф-я при открытии поп-ап в формах указаны значения из профиля
 function editInputValue() {
@@ -76,8 +47,7 @@ function editInputValue() {
 }
 
 // изменения текста внутри попап редактировани при помощи ф-ии
-function submitHandlerEdit(editUserInfo) {
-  debugger;
+function handleProfileSubmit(editUserInfo) {
   editUser.setUserInfo(editUserInfo.name, editUserInfo.job);
 
   popupEdit.close();
@@ -102,29 +72,8 @@ const section = new Section(
 
 section.getCardItem();
 
-const popupImage = new PopupWithImage(".popup_picture");
-popupImage.setEventListeners();
-
-// ф-я открытия большой картинки
-function handleCardClick(name, link) {
-  popupImage.open(name, link);
-}
-
-const editUser = new UserInfo(".profile__name", ".profile__job");
-
-const popupEdit = new PopupWithForm(".popup_edit", submitHandlerEdit);
-popupEdit.setEventListeners();
-
-const popupAddPlace = new PopupWithForm(".popup_add", submitHandler);
-popupAddPlace.setEventListeners();
-
-function submitHandler() {
-  debugger;
-  const cardData = {
-    name: placeField.value,
-    link: linkField.value,
-  };
-  section.addItem(createCard(cardData));
+function handleAddCardSubmit(formData) {
+  section.addItem(createCard(formData));
 }
 
 // вызов функции валидности для формы профиля из класса Валидации
@@ -135,14 +84,10 @@ const addPlaceFormValidator = new FormValidator(config, formAddPlace);
 addPlaceFormValidator.enableValidation();
 
 // // слушатель по клику которого открывает поп-ап
-editButton.addEventListener("click", editInputValue); // 
-
+editButton.addEventListener("click", editInputValue); //
 
 buttonAddPlace.addEventListener("click", (evt) => {
   evt.preventDefault();
-  placeField.value = "";
-  linkField.value = "";
-
   addPlaceFormValidator.resetValidation();
 
   popupAddPlace.open();

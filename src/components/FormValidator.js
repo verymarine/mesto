@@ -2,7 +2,7 @@ export class FormValidator {
   constructor(config, form) {
     this._config = config;
     this._form = form;
-    this._submitButtonSelector = this._form.querySelector(
+    this._submitButton = this._form.querySelector(
       this._config.submitButtonSelector
     );
     this._inputList = this._form.querySelectorAll(this._config.inputSelector);
@@ -27,10 +27,8 @@ export class FormValidator {
 
   // ф-я проверки кнопки
   _setSubmitButtonState() {
-    const button = this._form.querySelector(this._config.submitButtonSelector);
-
-    button.disabled = !this._form.checkValidity();
-    button.classList.toggle(
+    this._submitButton.disabled = !this._form.checkValidity();
+    this._submitButton.classList.toggle(
       this._config.submitButtonErrorClass,
       !this._form.checkValidity()
     );
@@ -72,15 +70,8 @@ export class FormValidator {
   }
 
   resetValidation() {
-    this._toggleButtonState();
-
     this._inputList.forEach((inputElement) => {
       this._hideError(inputElement);
     });
-  }
-
-  _toggleButtonState() {
-    this._submitButtonSelector.disabled = true;
-    this._submitButtonSelector.classList.add("popup__button_type_unactive");
   }
 }
