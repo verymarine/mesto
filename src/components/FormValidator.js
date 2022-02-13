@@ -41,7 +41,7 @@ export class FormValidator {
 
   // ф-я проверки валидности и назначения соответствующих значений (шов/хайд)
   _handlerFieldValidation(input) {
-    console.log(input.validity);
+    // console.log(input.validity); 
     // если НЕ валидная ! покажет ошибку
     if (!input.validity.valid) {
       // показывать ошибку

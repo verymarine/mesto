@@ -6,33 +6,33 @@ export const config = {
   submitButtonErrorClass: "popup__button_type_unactive",
 };
 
-// массив с объектами Карточек
-export const items = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+// // массив с объектами Карточек
+// export const items = [
+//   {
+//     name: "Архыз",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+//   },
+//   {
+//     name: "Челябинская область",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+//   },
+//   {
+//     name: "Иваново",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+//   },
+//   {
+//     name: "Камчатка",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+//   },
+//   {
+//     name: "Холмогорский район",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+//   },
+//   {
+//     name: "Байкал",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+//   },
+// ];
 
 // определяю переменные для всплывающего окна редактирования профиля
 export const profile = document.querySelector(".profile");
@@ -55,3 +55,5 @@ export const linkField = document.querySelector(".popup__input_type_link");
 
 // переменные для кнопки добавить новое место
 export const buttonAddPlace = profile.querySelector(".profile__add-button");
+
+export const buttonTrashCan = document.querySelector(".content__trashcan");

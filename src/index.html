@@ -21,11 +21,17 @@
     <main class="main">
       <section class="profile">
         <div class="profile__block">
-          <img
-            class="profile__avatar"
-            src="<%=require('./images/image.png')%>"
-            alt="Фотография пользователя"
-          />
+          <button class="button__avatar">
+            <div class="profile__avatar_mode_button">
+              <img
+              class="profile__avatar"
+              src="<%=require('./images/image.png')%>"
+              alt="Фотография пользователя"
+            />
+            </div>
+
+          </button>
+          
           <div class="profile__info">
             <div class="profile__content">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -72,7 +78,7 @@
                 class="popup__input popup__input_type_job"
                 placeholder="О себе"
                 type="text"
-                name="job"
+                name="about"
                 id="job-data"
                 minlength="2"
                 maxlength="200"
@@ -137,13 +143,26 @@
         <h2 class="popup__capture"></h2>
       </div>
     </div>
+    <div class="popup popup_delete">
+      <div class="popup__container">
+        <button
+          class="popup__close popup__close_type_delete"
+          type="button"
+        ></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button class="popup__button popup__button_type_confirm" type="submit">Да</button>
+      </div>
+    </div>
 
     <template class="template">
       <article class="content__grid">
         <img class="content__image" />
         <div class="content__info">
           <h2 class="content__title">Карачаевск</h2>
-          <button class="content__like" type="button"></button>
+          <div class="like__area">
+            <button class="content__like" type="button"></button>
+            <p class="content__like-counter">0</p>
+          </div>
           <button class="content__trashcan" type="button"></button>
         </div>
       </article>
