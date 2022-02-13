@@ -1,4 +1,4 @@
-.button__avatar {
+.profile__button-avatar {
   margin: 0;
   padding: 0;
   background: transparent;
@@ -12,7 +12,7 @@
   /* z-index: 1; */
 }
 
-.button__avatar:hover {
+.profile__button-avatar:hover {
   opacity: .8;
   background-image: url('../../../images/pencil.svg');
   background-position: center;
