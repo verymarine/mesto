@@ -1,27 +1,30 @@
 class UserInfo {
-  constructor(nameSelector, aboutSelector) {
+  constructor(nameSelector, aboutSelector, avatarSelector) {
     this._name = document.querySelector(nameSelector);
     this._about = document.querySelector(aboutSelector);
+    this._avatar = document.querySelector(avatarSelector);
   }
 
   getUserInfo() {
     return {
-      // id: this.id,
-      // name: this.name,
-      // about: this.about
+      id: this._id,
+      // avatar: this._avatar.src,
       name: this._name.textContent,
       about: this._about.textContent,
     };
   }
 
   setUserInfo(name, about) {
-    // if(data) {
-    //   this.id = data._id;
-    //   this.name = data.name;
-    //   this.about = data.about;
-    // }
     this._name.textContent = name;
     this._about.textContent = about;
+  }
+
+  setAvatar(avatar) {
+    this._avatar.src = avatar;
+  }
+
+  setId(id) {
+    this._id = id;
   }
 }
 

@@ -38,15 +38,25 @@ export const config = {
 export const profile = document.querySelector(".profile");
 export const editButton = profile.querySelector(".profile__button");
 
+// переменная для кнопки редактировать аватар 
+export const avatarButton =profile.querySelector(".profile__button-avatar");
+
 // // создаю переменную для инпута (который меняет имя)
 export const nameField = document.querySelector(".popup__input_type_name");
 export const jobField = document.querySelector(".popup__input_type_job");
 // export const profileName = profile.querySelector(".profile__name");
 // export const profileJob = profile.querySelector(".profile__job");
+// переменная для инпута аватара
+export const avatarField = document.querySelector(".popup__input_type_avatar");
+
+//переменная для формы Редактирования профиля (Имя и о себе)
 export const formProfile = document.querySelector(".popup__form_type_edit");
 
 // переменная для формы добавления Нового места
 export const formAddPlace = document.querySelector(".popup__form_type_add-place");
+
+//перемення для формы редактирования аватара
+export const formAvatar = document.querySelector(".popup__form_type_avatar");
 
 //переменные для значений Места и ссылки картинки
 export const placeField = document.querySelector(".popup__input_type_place");
